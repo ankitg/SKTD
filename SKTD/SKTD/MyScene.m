@@ -50,18 +50,19 @@
             CGPoint location = [touch locationInNode:self];
             CGPoint currentLocation = _myShip.position;
 
-            //Location
+            // Location
             SKAction *action = [SKAction moveTo:location duration:1.0f];
             [_myShip runAction:action];
             
             CGFloat duration = 0.35f;
             
-            //Rotation
-            CGFloat x = location.x - currentLocation.x;
-            CGFloat y = location.y - currentLocation.y;
-            CGFloat hyp = (x * y) / 2;
+            // Rotation
+            CGFloat sidex = fabsf(location.x - currentLocation.x); // The side of the triange that goes along the x-axis
+            CGFloat sidey = fabsf(location.y - currentLocation.y); // The side of the triange that goes along the y-axis
+            CGFloat sideh = sqrtf(pow(sidex,2) + pow(sidey,2));    // The side of the triange that is the hypotenous
             
-            CGFloat angle = 30;
+            // CGFloat angle = 30;
+            CGFloat angle = cosf((pow(sidey, 2) + pow(sideh, 2) - pow(sidex, 2)) / 2*sidey*sideh); // Angle between side y and hypotenous.
             
             SKAction *actionAngle = [SKAction rotateToAngle:angle duration:0.15f];
             [_myShip runAction:actionAngle];
