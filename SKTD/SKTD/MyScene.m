@@ -40,7 +40,12 @@
     [self addChild:_myShip];
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self touchesMoved:touches withEvent:event];
+}
+
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
     /* Called when a touch begins */
     
@@ -60,7 +65,7 @@
             CGPoint diff = CGPointMake((location.x - currentLocation.x), (location.y - currentLocation.y));
             CGFloat angle = -(atan2f(diff.x,diff.y));
             
-            SKAction *actionAngle = [SKAction rotateToAngle:angle duration:0.15f];
+            SKAction *actionAngle = [SKAction rotateToAngle:angle duration:0.15f shortestUnitArc:TRUE];
             [_myShip runAction:actionAngle];
             
             if(!_isAnimating)
