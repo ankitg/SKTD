@@ -33,8 +33,8 @@
 {
     _myShip = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
     
-    CGFloat x = (self.frame.size.width - _myShip.frame.size.width) / 2;
-    CGFloat y = (self.frame.size.height - _myShip.frame.size.height) / 2;
+    CGFloat x = (self.frame.size.width) / 2 ;
+    CGFloat y = (self.frame.size.height) / 2 ;
     
     _myShip.position = CGPointMake(x, y);
     [self addChild:_myShip];
@@ -55,14 +55,10 @@
             [_myShip runAction:action];
             
             CGFloat duration = 0.35f;
-            
+
             // Rotation
-            CGFloat sidex = fabsf(location.x - currentLocation.x); // The side of the triange that goes along the x-axis
-            CGFloat sidey = fabsf(location.y - currentLocation.y); // The side of the triange that goes along the y-axis
-            CGFloat sideh = sqrtf(pow(sidex,2) + pow(sidey,2));    // The side of the triange that is the hypotenous
-            
-            // CGFloat angle = 30;
-            CGFloat angle = cosf((pow(sidey, 2) + pow(sideh, 2) - pow(sidex, 2)) / 2*sidey*sideh); // Angle between side y and hypotenous.
+            CGPoint diff = CGPointMake((location.x - currentLocation.x), (location.y - currentLocation.y));
+            CGFloat angle = -(atan2f(diff.x,diff.y));
             
             SKAction *actionAngle = [SKAction rotateToAngle:angle duration:0.15f];
             [_myShip runAction:actionAngle];
