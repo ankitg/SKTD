@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B4ABB6717B2FC8E000D6DB5 /* JAGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4ABB6617B2FC8E000D6DB5 /* JAGrid.m */; };
 		4B92E88717A9C9E80023CCB8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B92E88617A9C9E80023CCB8 /* Foundation.framework */; };
 		4B92E88917A9C9E80023CCB8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B92E88817A9C9E80023CCB8 /* CoreGraphics.framework */; };
 		4B92E88B17A9C9E80023CCB8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B92E88A17A9C9E80023CCB8 /* UIKit.framework */; };
@@ -37,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B4ABB6517B2FC8E000D6DB5 /* JAGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGrid.h; path = Classes/Background/Grid/JAGrid/JAGrid.h; sourceTree = "<group>"; };
+		4B4ABB6617B2FC8E000D6DB5 /* JAGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGrid.m; path = Classes/Background/Grid/JAGrid/JAGrid.m; sourceTree = "<group>"; };
 		4B92E88317A9C9E80023CCB8 /* SKTD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SKTD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B92E88617A9C9E80023CCB8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4B92E88817A9C9E80023CCB8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -87,6 +90,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B4ABB6117B2FB3D000D6DB5 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				4B4ABB6217B2FB91000D6DB5 /* Background */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		4B4ABB6217B2FB91000D6DB5 /* Background */ = {
+			isa = PBXGroup;
+			children = (
+				4B4ABB6317B2FB99000D6DB5 /* Grid */,
+			);
+			name = Background;
+			sourceTree = "<group>";
+		};
+		4B4ABB6317B2FB99000D6DB5 /* Grid */ = {
+			isa = PBXGroup;
+			children = (
+				4B4ABB6417B2FBA1000D6DB5 /* JAGrid */,
+			);
+			name = Grid;
+			sourceTree = "<group>";
+		};
+		4B4ABB6417B2FBA1000D6DB5 /* JAGrid */ = {
+			isa = PBXGroup;
+			children = (
+				4B4ABB6517B2FC8E000D6DB5 /* JAGrid.h */,
+				4B4ABB6617B2FC8E000D6DB5 /* JAGrid.m */,
+			);
+			name = JAGrid;
+			sourceTree = "<group>";
+		};
 		4B92E87A17A9C9E80023CCB8 = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +157,7 @@
 		4B92E88E17A9C9E80023CCB8 /* SKTD */ = {
 			isa = PBXGroup;
 			children = (
+				4B4ABB6117B2FB3D000D6DB5 /* Classes */,
 				4B92E89717A9C9E80023CCB8 /* AppDelegate.h */,
 				4B92E89817A9C9E80023CCB8 /* AppDelegate.m */,
 				4B92E89A17A9C9E80023CCB8 /* Main.storyboard */,
@@ -263,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B92E8A217A9C9E80023CCB8 /* MyScene.m in Sources */,
+				4B4ABB6717B2FC8E000D6DB5 /* JAGrid.m in Sources */,
 				4B92E89F17A9C9E80023CCB8 /* ViewController.m in Sources */,
 				4B92E89917A9C9E80023CCB8 /* AppDelegate.m in Sources */,
 				4B92E89517A9C9E80023CCB8 /* main.m in Sources */,
@@ -472,6 +510,7 @@
 				4B92E8BE17A9C9E80023CCB8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4B92E8BF17A9C9E80023CCB8 /* Build configuration list for PBXNativeTarget "SKTDTests" */ = {
 			isa = XCConfigurationList;
@@ -480,6 +519,7 @@
 				4B92E8C117A9C9E80023CCB8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

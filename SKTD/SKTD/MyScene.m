@@ -25,6 +25,7 @@
         self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
         
         [self createShip];
+        [self spawnStuff];
     }
     return self;
 }
@@ -37,7 +38,29 @@
     CGFloat y = (self.frame.size.height) / 2 ;
     
     _myShip.position = CGPointMake(x, y);
+    [_myShip setScale:0.25];
     [self addChild:_myShip];
+    
+    //Ship collision
+    [_myShip setPhysicsBody:[SKPhysicsBody bodyWithRectangleOfSize:_myShip.size]];
+    _myShip.physicsBody.dynamic = FALSE;
+}
+
+#pragma mark - Spawn collision objects
+- (void)spawnStuff
+{
+    SKAction *makeRocks = [SKAction sequence: @[[SKAction performSelector:@selector(addRock) onTarget:self],[SKAction waitForDuration:0.01 withRange:0.15]]];
+    [self runAction: [SKAction repeatActionForever:makeRocks]];
+}
+
+- (void)addRock
+{
+    SKSpriteNode *rock = [[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(20, 20)];
+    rock.position = CGPointMake(arc4random_uniform(1024), self.size.height - 50);
+    rock.name = @"rock";
+    rock.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:rock.size];
+    rock.physicsBody.usesPreciseCollisionDetection = YES;
+    [self addChild:rock];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -94,6 +117,14 @@
 
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
+}
+
+-(void)didSimulatePhysics
+{
+    [self enumerateChildNodesWithName:@"rock" usingBlock:^(SKNode *node, BOOL *stop) {
+        if (node.position.y < 0)
+            [node removeFromParent];
+    }];
 }
 
 @end
