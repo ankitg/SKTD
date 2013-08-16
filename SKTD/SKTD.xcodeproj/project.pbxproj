@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B35A3EB17BD8A1300339669 /* JAGridPeice.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B35A3EA17BD8A1300339669 /* JAGridPeice.m */; };
 		4B4ABB6717B2FC8E000D6DB5 /* JAGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4ABB6617B2FC8E000D6DB5 /* JAGrid.m */; };
 		4B92E88717A9C9E80023CCB8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B92E88617A9C9E80023CCB8 /* Foundation.framework */; };
 		4B92E88917A9C9E80023CCB8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B92E88817A9C9E80023CCB8 /* CoreGraphics.framework */; };
@@ -38,6 +39,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B35A3E517BD878D00339669 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = Classes/Constants/Constants.h; sourceTree = "<group>"; };
+		4B35A3E917BD8A1300339669 /* JAGridPeice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGridPeice.h; path = Classes/Background/Grid/JAGrid/JAGridPeice.h; sourceTree = "<group>"; };
+		4B35A3EA17BD8A1300339669 /* JAGridPeice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGridPeice.m; path = Classes/Background/Grid/JAGrid/JAGridPeice.m; sourceTree = "<group>"; };
 		4B4ABB6517B2FC8E000D6DB5 /* JAGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGrid.h; path = Classes/Background/Grid/JAGrid/JAGrid.h; sourceTree = "<group>"; };
 		4B4ABB6617B2FC8E000D6DB5 /* JAGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGrid.m; path = Classes/Background/Grid/JAGrid/JAGrid.m; sourceTree = "<group>"; };
 		4B92E88317A9C9E80023CCB8 /* SKTD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SKTD.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,9 +94,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B35A3E317BD870700339669 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				4B35A3E517BD878D00339669 /* Constants.h */,
+			);
+			name = Constants;
+			sourceTree = "<group>";
+		};
 		4B4ABB6117B2FB3D000D6DB5 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				4B35A3E317BD870700339669 /* Constants */,
 				4B4ABB6217B2FB91000D6DB5 /* Background */,
 			);
 			name = Classes;
@@ -119,6 +132,8 @@
 			children = (
 				4B4ABB6517B2FC8E000D6DB5 /* JAGrid.h */,
 				4B4ABB6617B2FC8E000D6DB5 /* JAGrid.m */,
+				4B35A3E917BD8A1300339669 /* JAGridPeice.h */,
+				4B35A3EA17BD8A1300339669 /* JAGridPeice.m */,
 			);
 			name = JAGrid;
 			sourceTree = "<group>";
@@ -304,6 +319,7 @@
 				4B92E89F17A9C9E80023CCB8 /* ViewController.m in Sources */,
 				4B92E89917A9C9E80023CCB8 /* AppDelegate.m in Sources */,
 				4B92E89517A9C9E80023CCB8 /* main.m in Sources */,
+				4B35A3EB17BD8A1300339669 /* JAGridPeice.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

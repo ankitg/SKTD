@@ -22,6 +22,7 @@
     
     // Create and configure the scene.
     SKScene * scene = [JAGrid sceneWithSize:skView.bounds.size];
+//    SKScene * scene = [JAGrid sceneWithSize:skView.bounds.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     
     // Present the scene.

@@ -11,8 +11,9 @@
 @interface JAGrid : SKScene
 {
     @private
-    NSMutableArray *pathPoints;
-    BOOL wasDrawn;
+    //Tiles
+    NSMutableArray *gridPeices;
+    SKSpriteNode *currentTile;
 }
 
 @end

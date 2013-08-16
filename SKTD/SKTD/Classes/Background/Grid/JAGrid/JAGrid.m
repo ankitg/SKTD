@@ -7,6 +7,16 @@
 //
 
 #import "JAGrid.h"
+#import "JAGridPeice.h"
+
+#define tileSize    \
+    CGSizeMake([UIScreen mainScreen].bounds.size.width / kGridColumns, [UIScreen mainScreen].bounds.size.height / kGridRows)
+
+NS_ENUM(NSUInteger, JAGridTileZIndex)
+{
+    kJAGridTileZIndexBottom,
+    kJAGridTileZIndexTop
+};
 
 @implementation JAGrid
 
@@ -15,9 +25,9 @@
     self = [super initWithSize:size];
     if(self)
     {
-        wasDrawn = FALSE;
         [self createScene];
-        [self createSpawners];
+        [self createGrid];
+        [self updateGridPeices];
     }
     return self;
 }
@@ -25,101 +35,99 @@
 #pragma mark - Create scene
 - (void)createScene
 {
-    self.backgroundColor = [SKColor greenColor];
     self.scaleMode = SKSceneScaleModeAspectFill;
 }
 
-#pragma mark - Create spawners
-- (void)createSpawners
+#pragma mark - Create grid
+- (void)createGrid
 {
-    SKAction *spawnAction = [SKAction sequence:@[[SKAction performSelector:@selector(createEnemy) onTarget:self], [SKAction waitForDuration:0.25f withRange:0.5]]];
-    [self runAction:[SKAction repeatActionForever:spawnAction]];
-}
-
-- (void)createEnemy
-{
-    if(!wasDrawn)
-        return;
+    gridPeices = [[NSMutableArray alloc] initWithCapacity:kGridRows * kGridColumns];
     
-    SKSpriteNode *enemy = [[SKSpriteNode alloc] initWithColor:[SKColor whiteColor] size:CGSizeMake(20, 20)];
-    enemy.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:enemy.size];
-    enemy.position = CGPointZero;
-    [self addChild:enemy];
+    NSUInteger currentColumn = 0;
+    NSUInteger currentRow = 0;
     
-    [enemy runAction:[self enemyAction]];
-}
-
-- (SKAction *)enemyAction
-{
-    CGPathRef path = [self createPath];
-    SKAction *enemyAction = [SKAction followPath:path asOffset:FALSE orientToPath:TRUE duration:10];
-    SKAction *removeAction = [SKAction removeFromParent];
-    SKAction *sequence = [SKAction sequence:@[enemyAction, removeAction]];
+    CGFloat startingPos = 32.0f;
+    CGFloat xPos = startingPos;
+    CGFloat yPos = 0.0f;
     
-    return sequence;
-}
-
-#pragma mark - Create path
-- (CGPathRef)createPath
-{
-    UIBezierPath *path = [UIBezierPath bezierPath];
-    
-    //Start somewhere
-    [path moveToPoint:[pathPoints[0] CGPointValue]];
-    
-    for(NSUInteger i = 1; i < pathPoints.count; i++)
+    for(; currentRow < kGridRows; currentRow++)
     {
-        [path addLineToPoint:[pathPoints[i] CGPointValue]];
+        for(currentColumn = 0; currentColumn < kGridColumns; currentColumn++)
+        {
+            JAGridPeice *gridPeice = [self createGridPeice];
+            gridPeice.position = CGPointMake(xPos, yPos);
+            
+            [self addChild:gridPeice];
+            [gridPeices addObject:gridPeice];
+            
+            xPos += tileSize.width;
+        }
+        
+        xPos = startingPos;
+        yPos += tileSize.height;
     }
-    
-    return path.CGPath;
 }
 
-#pragma mark - Draw path
+- (JAGridPeice *)createGridPeice
+{
+    //TODO : Get some index
+    NSUInteger index = 0;
+    
+    JAGridPeice *gridPeice = [JAGridPeice spriteNodeWithTexture:[self createGridPeiceTexture:index] size:tileSize];
+    gridPeice.blendMode = SKBlendModeReplace;
+
+    return gridPeice;
+}
+
+- (SKTexture *)createGridPeiceTexture:(NSUInteger)textIndex;
+{
+    SKTexture *texture = [SKTexture textureWithImageNamed:@"TileGrass0"];
+    
+    return texture;
+}
+
+#pragma mark - Update tiles
+- (void)updateGridPeices
+{
+    for(JAGridPeice *peice in gridPeices)
+    {
+//        [peice updateImage:[UIImage imageNamed:@"grass20"]];
+    }
+}
+
+#pragma mark - Tile touches
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if(wasDrawn) return;
-    
-    if(!pathPoints)
-        pathPoints = [NSMutableArray new];
-    
-    [pathPoints removeAllObjects];
-    
-    [self touchesMoved:touches withEvent:event];
+    if(touches.count == 1)
+    {
+        CGPoint touchLocation = [[touches anyObject] locationInNode:self];
+        
+        currentTile = (SKSpriteNode *)[self nodeAtPoint:touchLocation];
+        currentTile.blendMode = SKBlendModeScreen;
+        currentTile.zPosition = kJAGridTileZIndexTop;
+    }
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if(wasDrawn) return;
-
-    CGPoint touchLocation = [[touches anyObject] locationInView:self.view];
+    CGPoint touchLocation = [[touches anyObject] locationInNode:self];
     
-    [pathPoints addObject:[NSValue valueWithCGPoint:touchLocation]];
+    currentTile.position = touchLocation;
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self touchesEnded:touches withEvent:event];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if(wasDrawn) return;
-
-    wasDrawn = TRUE;
-    [self createRandomThing];
-}
-
-#pragma mark - Create random thing that flies through things
-- (void)createRandomThing
-{
-    SKSpriteNode *randomThing = [[SKSpriteNode alloc] initWithColor:[SKColor darkGrayColor] size:CGSizeMake(50, 50)];
-    randomThing.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:randomThing.size];
-    randomThing.position = CGPointMake(self.size.width / 2, 0);
-    randomThing.physicsBody.restitution = 0.0f;
-    randomThing.physicsBody.friction = 1.0f;
-    randomThing.physicsBody.density = 1000.0f;
-    [self addChild:randomThing];
-    
-    //Action
-    SKAction *action = [SKAction sequence:@[[SKAction moveTo:CGPointMake(self.size.width / 2, self.size.height) duration:20], [SKAction removeFromParent]]];
-    
-    [randomThing runAction:action];
+    if(currentTile)
+    {
+        currentTile.blendMode = SKBlendModeReplace;
+        currentTile.zPosition = kJAGridTileZIndexBottom;
+        currentTile = nil;
+    }
 }
 
 @end
