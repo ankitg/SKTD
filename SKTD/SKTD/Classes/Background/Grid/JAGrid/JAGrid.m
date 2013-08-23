@@ -27,7 +27,6 @@ NS_ENUM(NSUInteger, JAGridTileZIndex)
     {
         [self createScene];
         [self createGrid];
-        [self updateGridPeices];
     }
     return self;
 }
@@ -66,6 +65,12 @@ NS_ENUM(NSUInteger, JAGridTileZIndex)
         xPos = startingPos;
         yPos += tileSize.height;
     }
+    
+    //TEST
+    SKSpriteNode *testNode = [SKSpriteNode spriteNodeWithColor:[SKColor blueColor] size:tileSize];
+    testNode.position = CGPointMake(400, 600);
+    [self addChild:testNode];
+    //ENDTEST
 }
 
 - (JAGridPeice *)createGridPeice
@@ -86,15 +91,6 @@ NS_ENUM(NSUInteger, JAGridTileZIndex)
     return texture;
 }
 
-#pragma mark - Update tiles
-- (void)updateGridPeices
-{
-    for(JAGridPeice *peice in gridPeices)
-    {
-//        [peice updateImage:[UIImage imageNamed:@"grass20"]];
-    }
-}
-
 #pragma mark - Tile touches
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -102,7 +98,17 @@ NS_ENUM(NSUInteger, JAGridTileZIndex)
     {
         CGPoint touchLocation = [[touches anyObject] locationInNode:self];
         
-        currentTile = (SKSpriteNode *)[self nodeAtPoint:touchLocation];
+        SKSpriteNode *touchedTile = (SKSpriteNode *)[self nodeAtPoint:touchLocation];
+        
+        for(JAGridPeice *childPeice in gridPeices)
+        {
+            if([childPeice isEqual:touchedTile])
+            {
+                return;
+            }
+        }
+        
+        currentTile = touchedTile;
         currentTile.blendMode = SKBlendModeScreen;
         currentTile.zPosition = kJAGridTileZIndexTop;
     }
@@ -126,7 +132,22 @@ NS_ENUM(NSUInteger, JAGridTileZIndex)
     {
         currentTile.blendMode = SKBlendModeReplace;
         currentTile.zPosition = kJAGridTileZIndexBottom;
+        
+        [self placeTile:currentTile atPointLocation:[[touches anyObject] locationInNode:self]];
         currentTile = nil;
+    }
+}
+
+#pragma mark - Place tile
+- (void)placeTile:(SKNode *)tile atPointLocation:(CGPoint)locationPoint;
+{
+    for(JAGridPeice *childPeice in gridPeices)
+    {
+        if([childPeice containsPoint:locationPoint] && childPeice.isEmpty)
+        {
+            tile.position = childPeice.position;
+            break;
+        }
     }
 }
 

@@ -16,4 +16,7 @@
     SKSpriteNode *currentTile;
 }
 
+//Place tile at point
+- (void)placeTile:(SKNode *)tile atPointLocation:(CGPoint)locationPoint;
+
 @end

@@ -26,6 +26,9 @@
 		4B92E8AF17A9C9E80023CCB8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B92E88A17A9C9E80023CCB8 /* UIKit.framework */; };
 		4B92E8B717A9C9E80023CCB8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B92E8B517A9C9E80023CCB8 /* InfoPlist.strings */; };
 		4B92E8B917A9C9E80023CCB8 /* SKTDTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B92E8B817A9C9E80023CCB8 /* SKTDTests.m */; };
+		4BFA07BE17C6DE7D0021ABAD /* JAControlsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BFA07BD17C6DE7D0021ABAD /* JAControlsVC.m */; };
+		4BFA07C117C6DEAF0021ABAD /* JAControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BFA07C017C6DEAF0021ABAD /* JAControls.m */; };
+		4BFA07C417C6DF3F0021ABAD /* JAMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BFA07C317C6DF3F0021ABAD /* JAMainVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +70,12 @@
 		4B92E8B417A9C9E80023CCB8 /* SKTDTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SKTDTests-Info.plist"; sourceTree = "<group>"; };
 		4B92E8B617A9C9E80023CCB8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4B92E8B817A9C9E80023CCB8 /* SKTDTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKTDTests.m; sourceTree = "<group>"; };
+		4BFA07BC17C6DE7D0021ABAD /* JAControlsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAControlsVC.h; path = Classes/InterfaceLayer/ControlsVC/JAControlsVC.h; sourceTree = "<group>"; };
+		4BFA07BD17C6DE7D0021ABAD /* JAControlsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAControlsVC.m; path = Classes/InterfaceLayer/ControlsVC/JAControlsVC.m; sourceTree = "<group>"; };
+		4BFA07BF17C6DEAF0021ABAD /* JAControls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAControls.h; path = Classes/InterfaceLayer/ControlsVC/JAControls.h; sourceTree = "<group>"; };
+		4BFA07C017C6DEAF0021ABAD /* JAControls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAControls.m; path = Classes/InterfaceLayer/ControlsVC/JAControls.m; sourceTree = "<group>"; };
+		4BFA07C217C6DF3F0021ABAD /* JAMainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAMainVC.h; path = Classes/InterfaceLayer/MainVC/JAMainVC.h; sourceTree = "<group>"; };
+		4BFA07C317C6DF3F0021ABAD /* JAMainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAMainVC.m; path = Classes/InterfaceLayer/MainVC/JAMainVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,8 +114,9 @@
 		4B4ABB6117B2FB3D000D6DB5 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				4B35A3E317BD870700339669 /* Constants */,
 				4B4ABB6217B2FB91000D6DB5 /* Background */,
+				4B35A3E317BD870700339669 /* Constants */,
+				4BFA07A617C6D8400021ABAD /* MenuLayer */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -216,6 +226,35 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		4BFA07A617C6D8400021ABAD /* MenuLayer */ = {
+			isa = PBXGroup;
+			children = (
+				4BFA07BB17C6DE480021ABAD /* ControlsVC */,
+				4BFA07BA17C6DE390021ABAD /* MainVC */,
+			);
+			name = MenuLayer;
+			sourceTree = "<group>";
+		};
+		4BFA07BA17C6DE390021ABAD /* MainVC */ = {
+			isa = PBXGroup;
+			children = (
+				4BFA07C217C6DF3F0021ABAD /* JAMainVC.h */,
+				4BFA07C317C6DF3F0021ABAD /* JAMainVC.m */,
+			);
+			name = MainVC;
+			sourceTree = "<group>";
+		};
+		4BFA07BB17C6DE480021ABAD /* ControlsVC */ = {
+			isa = PBXGroup;
+			children = (
+				4BFA07BF17C6DEAF0021ABAD /* JAControls.h */,
+				4BFA07C017C6DEAF0021ABAD /* JAControls.m */,
+				4BFA07BC17C6DE7D0021ABAD /* JAControlsVC.h */,
+				4BFA07BD17C6DE7D0021ABAD /* JAControlsVC.m */,
+			);
+			name = ControlsVC;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -315,10 +354,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B92E8A217A9C9E80023CCB8 /* MyScene.m in Sources */,
+				4BFA07BE17C6DE7D0021ABAD /* JAControlsVC.m in Sources */,
 				4B4ABB6717B2FC8E000D6DB5 /* JAGrid.m in Sources */,
 				4B92E89F17A9C9E80023CCB8 /* ViewController.m in Sources */,
 				4B92E89917A9C9E80023CCB8 /* AppDelegate.m in Sources */,
 				4B92E89517A9C9E80023CCB8 /* main.m in Sources */,
+				4BFA07C417C6DF3F0021ABAD /* JAMainVC.m in Sources */,
+				4BFA07C117C6DEAF0021ABAD /* JAControls.m in Sources */,
 				4B35A3EB17BD8A1300339669 /* JAGridPeice.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -6,8 +6,9 @@
 //  Copyright (c) 2013 AFApps. All rights reserved.
 //
 
-#import "ViewController.h"
 #import "JAGrid.h"
+#import "JAMainVC.h"
+#import "ViewController.h"
 
 @implementation ViewController
 
@@ -15,18 +16,26 @@
 {
     [super viewDidLoad];
 
-    // Configure the view.
-    SKView * skView = (SKView *)self.view;
+    //Configure the view
+    SKView *skView = (SKView *)self.view;
     skView.showsFPS = YES;
     skView.showsNodeCount = YES;
     
-    // Create and configure the scene.
-    SKScene * scene = [JAGrid sceneWithSize:skView.bounds.size];
-//    SKScene * scene = [JAGrid sceneWithSize:skView.bounds.size];
+    //Create and configure the scene
+    SKScene *scene = [JAGrid sceneWithSize:skView.bounds.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     
-    // Present the scene.
+    //Present the scene
     [skView presentScene:scene];
+    
+    //Create main VC
+    [self createMainVC];
+}
+
+- (void)createMainVC
+{
+    JAMainVC *mainVC = [[JAMainVC alloc] initWithNibName:nil bundle:nil];
+    [self.view addSubview:mainVC.view];
 }
 
 - (BOOL)shouldAutorotate

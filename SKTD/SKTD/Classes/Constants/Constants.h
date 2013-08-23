@@ -6,8 +6,11 @@
 //  Copyright (c) 2013 AFApps. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 //Grid
 const NSUInteger kGridRows = 16;
 const NSUInteger kGridColumns = 12;
+
+//Controls
+const CGFloat kControlsHeight = 150;

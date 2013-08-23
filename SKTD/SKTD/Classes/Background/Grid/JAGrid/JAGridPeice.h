@@ -10,4 +10,6 @@
 
 @interface JAGridPeice : SKSpriteNode
 
+@property (nonatomic, readonly) BOOL isEmpty;
+
 @end
